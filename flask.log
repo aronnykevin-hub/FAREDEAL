@@ -9,3 +9,8 @@
  * Debugger is active!
  * Debugger PIN: 359-275-872
 172.30.0.2 - - [01/Sep/2025 14:04:08] "[32mHEAD / HTTP/1.1[0m" 302 -
+[2025-09-01 14:11:20,241] INFO in scheduler: Low-stock items: 0
+[2025-09-01 14:11:20,643] INFO in scheduler: Low-stock items: 0
+172.30.0.2 - - [01/Sep/2025 14:11:49] "[32mHEAD / HTTP/1.1[0m" 302 -
+127.0.0.1 - - [01/Sep/2025 14:11:50] "[32mHEAD / HTTP/1.1[0m" 302 -
+127.0.0.1 - - [01/Sep/2025 14:12:35] "[32mHEAD / HTTP/1.1[0m" 302 -
