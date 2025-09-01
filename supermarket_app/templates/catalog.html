@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Catalog</h1>
+
+{% if categories %}
+<section class="categories">
+	<h2>Categories</h2>
+	<ul class="pill-list">
+		{% for c in categories %}
+		<li>{{ c.name }}</li>
+		{% endfor %}
+	</ul>
+</section>
+{% endif %}
+
+<section class="products">
+	<h2>Products</h2>
+	<div class="grid">
+		{% for p in products %}
+		<div class="card">
+			{% if p.image_url %}
+			<img src="{{ p.image_url }}" alt="{{ p.name }}">
+			{% endif %}
+			<div class="card-body">
+				<h3>{{ p.name }}</h3>
+				<p class="desc">{{ p.description or 'No description' }}</p>
+				<div class="price">${{ '%.2f' % (p.price_cents / 100) }}</div>
+				<button disabled>Add to Cart</button>
+			</div>
+		</div>
+		{% else %}
+		<p>No products yet. Check back soon.</p>
+		{% endfor %}
+	</div>
+</section>
+{% endblock %}
+
