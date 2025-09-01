@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 """Flask app factory and extension setup."""
+from dotenv import load_dotenv
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -13,6 +14,8 @@ def create_app() -> Flask:
 		template_folder="templates",
 		static_folder="static",
 	)
+	# Load .env for local/dev environments before reading config
+	load_dotenv()
 	app.config.from_object("supermarket_app.config.Config")
 
 	# Initialize extensions

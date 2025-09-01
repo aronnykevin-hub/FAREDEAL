@@ -28,3 +28,8 @@ Run time of job "start_scheduler.<locals>.low_stock_check (trigger: interval[0:1
 Run time of job "start_scheduler.<locals>.low_stock_check (trigger: interval[0:15:00], next run at: 2025-09-01 14:57:14 UTC)" was missed by 0:01:23.964959
 [2025-09-01 14:56:20,241] INFO in scheduler: Low-stock items: 0
 [2025-09-01 14:57:14,850] INFO in scheduler: Low-stock items: 0
+ * Detected change in '/workspace/supermarket_app/__init__.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 359-275-872
+[2025-09-01 15:11:20,241] INFO in scheduler: Low-stock items: 0
