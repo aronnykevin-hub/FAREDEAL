@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Deliveries</h1>
+
+<form method="post" action="{{ url_for('deliveries.create_delivery') }}" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:end;margin-bottom:16px">
+	<input name="customer_name" placeholder="Customer name">
+	<input name="address" placeholder="Address">
+	<input name="phone" placeholder="Phone">
+	<input name="payment_cents" placeholder="Payment (cents)" type="number">
+	<button>Create</button>
+</form>
+
+<table>
+	<thead>
+		<tr><th>ID</th><th>Customer</th><th>Address</th><th>Status</th><th>Driver</th><th>Assign</th><th>Update</th></tr>
+	</thead>
+	<tbody>
+		{% for o in orders %}
+		<tr>
+			<td>#{{ o.id }}</td>
+			<td>{{ o.customer_name }}</td>
+			<td>{{ o.address }}</td>
+			<td>{{ o.status }}</td>
+			<td>{{ o.driver.full_name if o.driver else '-' }}</td>
+			<td>
+				<form method="post" action="{{ url_for('deliveries.assign_driver', order_id=o.id) }}" style="display:flex;gap:6px">
+					<select name="driver_id">
+						<option value="">Unassigned</option>
+						{% for d in drivers %}
+						<option value="{{ d.id }}" {% if o.driver and d.id==o.driver.id %}selected{% endif %}>{{ d.full_name }}</option>
+						{% endfor %}
+					</select>
+					<button>Set</button>
+				</form>
+			</td>
+			<td>
+				<form method="post" action="{{ url_for('deliveries.update_status', order_id=o.id) }}" style="display:flex;gap:6px">
+					<select name="status">
+						{% for s in ['pending','assigned','enroute','delivered','cancelled'] %}
+						<option value="{{ s }}" {% if o.status==s %}selected{% endif %}>{{ s }}</option>
+						{% endfor %}
+					</select>
+					<button>Update</button>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+

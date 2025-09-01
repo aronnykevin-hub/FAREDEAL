@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Business Dashboard</h1>
+<div class="grid">
+	<div class="card"><div class="card-body"><h3>Products</h3><div class="price">{{ stats.products }}</div></div></div>
+	<div class="card"><div class="card-body"><h3>Low Stock</h3><div class="price">{{ stats.low_stock }}</div></div></div>
+	<div class="card"><div class="card-body"><h3>Sales Today</h3><div class="price">${{ '%.2f' % (stats.sales_today / 100) }}</div></div></div>
+</div>
+{% endblock %}
+

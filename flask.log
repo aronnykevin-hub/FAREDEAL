@@ -1,0 +1,35 @@
+ * Serving Flask app 'supermarket_app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.30.0.2:5000
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 359-275-872
+172.30.0.2 - - [01/Sep/2025 14:04:08] "[32mHEAD / HTTP/1.1[0m" 302 -
+[2025-09-01 14:11:20,241] INFO in scheduler: Low-stock items: 0
+[2025-09-01 14:11:20,643] INFO in scheduler: Low-stock items: 0
+172.30.0.2 - - [01/Sep/2025 14:11:49] "[32mHEAD / HTTP/1.1[0m" 302 -
+127.0.0.1 - - [01/Sep/2025 14:11:50] "[32mHEAD / HTTP/1.1[0m" 302 -
+127.0.0.1 - - [01/Sep/2025 14:12:35] "[32mHEAD / HTTP/1.1[0m" 302 -
+[2025-09-01 14:26:20,237] INFO in scheduler: Low-stock items: 0
+[2025-09-01 14:26:20,637] INFO in scheduler: Low-stock items: 0
+ * Detected change in '/workspace/supermarket_app/config.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 359-275-872
+ * Detected change in '/workspace/supermarket_app/__init__.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 359-275-872
+Run time of job "start_scheduler.<locals>.low_stock_check (trigger: interval[0:15:00], next run at: 2025-09-01 14:41:20 UTC)" was missed by 0:02:18.586258
+Run time of job "start_scheduler.<locals>.low_stock_check (trigger: interval[0:15:00], next run at: 2025-09-01 14:57:14 UTC)" was missed by 0:01:23.964959
+[2025-09-01 14:56:20,241] INFO in scheduler: Low-stock items: 0
+[2025-09-01 14:57:14,850] INFO in scheduler: Low-stock items: 0
+ * Detected change in '/workspace/supermarket_app/__init__.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 359-275-872
+[2025-09-01 15:11:20,241] INFO in scheduler: Low-stock items: 0
