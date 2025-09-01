@@ -23,12 +23,20 @@ def create_app() -> Flask:
 
 	# Register blueprints
 	from .routes.catalog import catalog_bp
+	from .routes.dashboard import dashboard_bp
+	from .routes.inventory import inventory_bp
+	from .routes.sales import sales_bp
+	from .routes.deliveries import deliveries_bp
 	app.register_blueprint(catalog_bp)
+	app.register_blueprint(dashboard_bp)
+	app.register_blueprint(inventory_bp)
+	app.register_blueprint(sales_bp)
+	app.register_blueprint(deliveries_bp)
 
 	# Redirect root to catalog
 	@app.route("/")
 	def index():
-		return redirect(url_for("catalog.catalog"))
+		return redirect(url_for("dashboard.dashboard"))
 
 	# Ensure database tables exist on startup (simple dev convenience)
 	with app.app_context():

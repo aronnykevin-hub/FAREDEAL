@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Inventory</h1>
+<table>
+	<thead>
+		<tr><th>Product</th><th>Stock</th><th>Adjust</th></tr>
+	</thead>
+	<tbody>
+		{% for p in products %}
+		<tr>
+			<td>{{ p.name }}</td>
+			<td>{{ p.inventory }}</td>
+			<td>
+				<form method="post" action="{{ url_for('inventory.adjust_stock') }}" style="display:flex;gap:6px">
+					<input type="hidden" name="product_id" value="{{ p.id }}">
+					<input type="number" name="quantity" value="1">
+					<input type="text" name="reason" placeholder="reason" value="manual_adjust">
+					<button>Apply</button>
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
+

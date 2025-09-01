@@ -11,8 +11,10 @@
 		<div class="container">
 			<a href="/" class="brand">Supermarket</a>
 			<nav>
+				<a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
 				<a href="{{ url_for('catalog.catalog') }}">Catalog</a>
-				<a href="#" aria-disabled="true" class="disabled">Cart</a>
+				<a href="{{ url_for('inventory.inventory_home') }}">Inventory</a>
+				<a href="{{ url_for('deliveries.list_deliveries') }}">Deliveries</a>
 			</nav>
 		</div>
 	</header>
