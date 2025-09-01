@@ -1,4 +1,5 @@
 from datetime import datetime
+from flask_login import UserMixin
 from . import db
 
 
@@ -19,6 +20,7 @@ class Product(db.Model):
 	is_active = db.Column(db.Boolean, default=True)
 	created_at = db.Column(db.DateTime, default=datetime.utcnow)
 	category_id = db.Column(db.Integer, db.ForeignKey("category.id"), nullable=True)
+	barcode = db.Column(db.String(64), unique=True, nullable=True)
 
 
 class Supplier(db.Model):
@@ -106,5 +108,14 @@ class DeliveryOrder(db.Model):
 	driver_id = db.Column(db.Integer, db.ForeignKey("driver.id"), nullable=True)
 	created_at = db.Column(db.DateTime, default=datetime.utcnow)
 	payment_cents = db.Column(db.Integer, default=0)
+
+
+class User(UserMixin, db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	full_name = db.Column(db.String(200), nullable=False)
+	email = db.Column(db.String(200), unique=True, nullable=False)
+	password_hash = db.Column(db.String(255), nullable=False)
+	role = db.Column(db.String(50), default="staff")
+	created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 

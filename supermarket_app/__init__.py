@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+"""Flask app factory and extension setup."""
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -18,6 +19,10 @@ def create_app() -> Flask:
 	db.init_app(app)
 	migrate.init_app(app, db)
 
+	# Import auth lazily to avoid circular imports
+	from .auth import login_manager, auth_bp  # noqa: WPS433
+	login_manager.init_app(app)
+
 	# Import models so they are registered with SQLAlchemy for migrations
 	from . import models  # noqa: F401
 
@@ -27,11 +32,14 @@ def create_app() -> Flask:
 	from .routes.inventory import inventory_bp
 	from .routes.sales import sales_bp
 	from .routes.deliveries import deliveries_bp
+	from .routes.admin import admin_bp
 	app.register_blueprint(catalog_bp)
 	app.register_blueprint(dashboard_bp)
 	app.register_blueprint(inventory_bp)
 	app.register_blueprint(sales_bp)
 	app.register_blueprint(deliveries_bp)
+	app.register_blueprint(admin_bp)
+	app.register_blueprint(auth_bp)
 
 	# Redirect root to catalog
 	@app.route("/")
@@ -41,5 +49,8 @@ def create_app() -> Flask:
 	# Ensure database tables exist on startup (simple dev convenience)
 	with app.app_context():
 		db.create_all()
+		# Lazy import to avoid module import before app exists
+		from .scheduler import start_scheduler  # noqa: WPS433
+		start_scheduler(app)
 
 	return app
