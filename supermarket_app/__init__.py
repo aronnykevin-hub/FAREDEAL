@@ -49,8 +49,10 @@ def create_app() -> Flask:
 	# Ensure database tables exist on startup (simple dev convenience)
 	with app.app_context():
 		db.create_all()
-		# Lazy import to avoid module import before app exists
-		from .scheduler import start_scheduler  # noqa: WPS433
-		start_scheduler(app)
+		# Only run background scheduler off-Vercel (serverless is ephemeral)
+		from .config import Config  # noqa: WPS433
+		if not Config.IS_VERCEL:
+			from .scheduler import start_scheduler  # noqa: WPS433
+			start_scheduler(app)
 
 	return app
